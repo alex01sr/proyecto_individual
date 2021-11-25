@@ -2,32 +2,40 @@ import React  from "react"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { useDispatch, useSelector} from "react-redux"
-import { getCountrySearch } from "../redux/actions"
+import { getCountrySearch, getFirtsCountries } from "../redux/actions"
 
 const Nav = (props) =>{
      const dispatch = useDispatch();
-     
+     //creamo un stado local para guardar el input
 const[state, setState] =  useState("")
-
+//useEffect esta escuchando el estado cada vez que cambie
  React.useEffect(()=>{
-
-    if(state === "") 
-    {dispatch(getCountrySearch(state))}
- /*    else{dispatch(getCountrySearch(state));}  codigo para que a medida que vamos escribiendo aparezca el pais, falta mejorar*/
-    console.log(state) 
-
+     //si el estado esta vacio llamamos la action getfirstcountries que nos devuelve los paises iniciales
+    if(state === "" ) 
+        {dispatch(getFirtsCountries())
+    }
+    else{
+        //si no hace la llamada a getcountrysearch y hace la busqueda en la api 
+        dispatch(getCountrySearch(state))
+    }
 },[state]) 
  
 
 function handleChange(e){
+//seteamos el estado cada vez que cambia el input
     setState(e.target.value)
-    
+       
 }
 
 function handleFormChange(e){
     e.preventDefault()
-    if(state === "") dispatch(getCountrySearch(state));
-    dispatch(getCountrySearch(state));
+    if(state === "" ) 
+        {dispatch(getFirtsCountries())
+    }
+    else{
+        dispatch(getCountrySearch(state))
+    }
+
 }
 
 
