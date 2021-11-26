@@ -77,12 +77,12 @@ const Home = (props) =>{
                     {/* con este map creamos los elementos de pagination y le pasamos un argumento con el numero del array  */}
                     {<Pagination num={0} name="Inicio"/>}
 
-                    {state.arrayState?.map((element, index)=>{
+                    {(state.arrayState?.map((element, index)=>{
                         if(index >pag-2 && index <= pag+2){
-                            return <Pagination num={index}/>
+                            return <Pagination key={index}num={index}/>
                         }
                     
-                        })}
+                        }))}
 
                     {<Pagination num={state.arrayState.length-1} name="Final"/>}
                 </div>
