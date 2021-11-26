@@ -19,25 +19,102 @@ let arrPromises = [];
 
   router.get("/countries",async (req,res)=>{
     
-    if(req.query.name){ 
-        try {
-           
-            let countrys
-            console.log( " query: "+req.query.name)
-           countrys = await Country.findAll({where: {nombre: {[Op.iLike]: `%${req.query.name}%`}}, include:[Activity]})
+    /* function buscadorName (){ */
+        if(req.query.name && req.query.order){
 
-            if(countrys.length === 0) return res.json({msg:"No se encontro ningun pais"});
-            res.send(countrys)
-        } catch (error) {
-            res.send({msg: "fallo en la busqueda"})
+           
+                try {
+                
+                    let countrys
+                   
+                    if(req.query.order === "O") {
+                        countrys = await Country.findAll({where: {nombre: {[Op.iLike]: `%${req.query.name}%`}}, include:[Activity]})
+    
+    
+    
+                        if(countrys.length === 0) return res.json({msg:"No se encontro ningun pais"});
+                        res.send(countrys)
+
+                    }else{
+                        countrys = await Country.findAll({where: {nombre: {[Op.iLike]: `%${req.query.name}%`}}, include:[Activity], order:[["nombre", req.query.order]] })
+    
+    
+    
+                        if(countrys.length === 0) return res.json({msg:"No se encontro ningun pais"});
+                        res.send(countrys)
+
+                    }
+                   
+
+
+                } catch (error) {
+                    res.send({msg: "fallo en la busqueda"})
+                }
         }
-     
-    }
+      /*   else if(req.query.order){
+            try {
+                let countrys
+
+                if(req.query.order === "O") {
+                    countrys = await Country.findAll({ include:[Activity]})
+                     if(countrys.length === 0) return res.json({msg:"No se encontro ningun pais"});
+                    res.send(countrys)
+
+                }else{
+                    countrys = await Country.findAll( {include:[Activity],order:[["nombre", req.query.order]]})
+                    if(countrys.length === 0) return res.json({msg:"No se encontro ningun pais"});
+                        res.send(countrys)
+                }
+                
+            } catch (error) {
+                res.send({msg: "fallo en la busqueda"})
+            }
+         
+        }
+ */
+
+
+      
+
+
+    /* } */
+
+   /*  else if(req.query.order){
+        let countrys
+        try {
+            switch(req.query.order){
+                case "A-Z":
+                    countrys = await Country.findAll({order:[["nombre", "ASC"]]})
+                    res.send(countrys)
+                    break;
+                case "Z-A":
+                    countrys = await Country.findAll({order:[["nombre", "DESC"]]})
+                    res.send(countrys)
+                    break;
+                case "Ordenar por":
+                    countrys = await Country.findAll();
+                    res.send(countrys)
+                    break;
+                default:
+                    countrys = await Country.findAll();
+                    res.send(countrys)
+            }
+           
+
+        } catch (error) {
+            res.send({msg: "fallo en la busqueda", countrys})
+        }
+
+    } */
 
 
     else{
         request("https://restcountries.com/v3/all", async(err,response,body)=>{
-            let countries = await Country.findAll(); 
+            let countries
+            if(req.query.order === "O" || !req.query.order)  {countries = await Country.findAll()}else{
+                 countries = await Country.findAll({order:[["nombre", req.query.order]]}); 
+            }
+            
             // validamos que no hayan datos en la base de datos 
             if(countries.length === 0){
                 const users = await JSON.parse(body);
@@ -89,7 +166,7 @@ router.post("/activity", async (req,res)=>{
     const {nombre, dificultad, duracion, temporada,countries} = req.body;
     try {
         const [instance, created] = await Activity.findOrCreate({where:{nombre: nombre}, defaults:{ dificultad, duracion, temporada}});
-        console.log(instance)
+       
 
 
         for(let element of countries){
@@ -105,7 +182,7 @@ router.post("/activity", async (req,res)=>{
     }
    
 
-    console.log(nombre,dificultad,duracion,temporada)
+    
 
     
 });
