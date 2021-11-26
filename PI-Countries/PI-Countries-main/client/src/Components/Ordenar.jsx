@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import { useDispatch,useSelector } from "react-redux"
 
-import { getCountrySearch,  getFirtsCountries, setOrderSatus } from "../redux/actions"
+import { getCountrySearch, setOrderSatus } from "../redux/actions"
 
 const Ordenar = (props) =>{
      const dispatch = useDispatch()
@@ -21,21 +21,15 @@ const Ordenar = (props) =>{
     }
     React.useEffect(()=>{
         dispatch(setOrderSatus(state))
-        if(state[0] === "O"){
-            dispatch(getFirtsCountries())
-        }else{
-            dispatch(getCountrySearch(pais,state))
-        }
+        dispatch(getCountrySearch(pais,state))
+        
 
     },[state])
-   /*  React.useEffect(()=>{
-        dispatch(getFilterCountries(order))
-    },[order]) */
-    return <div>
+     return <div>
             <select  onChange={handleOnChange}>
             <option value="O"selected>Ordenar por {props.table}</option>
             {props.name?.map((element =>{
-            return <option value={element.serv}>{element.order}</option>
+            return <option  value={element.serv}>{element.order}</option>
 
             
             }))}

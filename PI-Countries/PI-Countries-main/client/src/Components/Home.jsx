@@ -1,15 +1,15 @@
 import React  from "react"
-import { Link } from "react-router-dom"
-import { getAllCountries, getCountrySearch, getFirtsCountries } from "../redux/actions"
+
+import {  getCountrySearch, getFirtsCountries } from "../redux/actions"
 import {useDispatch, useSelector } from "react-redux";
 import Country from "./Country";
 import Pagination from "./Pagination";
 import Nav from "./Nav";
 
 const Home = (props) =>{
-   //traemos los tres estados globales
-    let country = useSelector((state)=> state.countries) 
-    let searchCountry = useSelector((state)=> state.country)
+   //traemos los dos estados globales
+    
+    const searchCountry = useSelector((state)=> state.country)
     const pag = useSelector((state) => state.pagination)
     const dispatch = useDispatch()
     
@@ -19,21 +19,17 @@ const Home = (props) =>{
         arrayState: []
         
     })
+    const pais = useSelector((state) => state.pais)
+    const order = useSelector((state) => state.order)
     //al crear el componente llamar getallcountries y get firstcountries
     React.useEffect(()=>{
-        dispatch(getAllCountries())
-        dispatch(getFirtsCountries())  
+        
+        dispatch(getCountrySearch(pais,order)) 
+
         },[])
-
-    
-
-      
     React.useEffect(()=>{
-        
-           /* cada vez que cambie countries ejecutamos este codigo para hacer la division de los array y la proxima paginacion */
-        paginado(searchCountry)
-        
-        },[country, searchCountry])
+   /* cada vez que cambie countries ejecutamos este codigo para hacer la division de los array y la proxima paginacion */
+        paginado(searchCountry)},[searchCountry])
 
 
 

@@ -53,6 +53,7 @@ let arrPromises = [];
         }
     
     else{
+
         let countries
         if(req.query.order === "O" || !req.query.order)  {
             countries = await Country.findAll()
@@ -63,12 +64,13 @@ let arrPromises = [];
        if(countries.length=== 0){
         request("https://restcountries.com/v3/all", async(err,response,body)=>{
             let countries
-            if(req.query.order === "O" || !req.query.order)  {countries = await Country.findAll()}else{
+            if(req.query.order === "O" || !req.query.order)  {countries = await Country.findAll()
+            } else{
                  countries = await Country.findAll({order:[[req.query.table, req.query.order]]}); 
             }
             
             // validamos que no hayan datos en la base de datos 
-            if(countries.length === 0){
+                if(countries.length === 0){
                 const users = await JSON.parse(body);
                 
                 arrPromises = users.map(( element )=>{

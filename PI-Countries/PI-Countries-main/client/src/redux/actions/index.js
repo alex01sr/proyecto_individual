@@ -1,22 +1,12 @@
 
-export const GET_ALL_COUNTRIES = "GET_ALL_HOUSES";
+
 export const GET_PAGINATION_NUMBER = "GET_PAGINATION_NUMBER";
 export const GET_COUNTRY_SEARCH= "GET_COUNTRY_SEARCH";
-export const GET_FIRST_COUNTRIES = "GET_FIRST_COUNTRIES";
-
 export const SET_ORDER_STATUS = "SET_ORDER_STATUS";
 export const SET_PAIS_STATUS = "SET_PAIS_STATUS";
 
 
 
-export const getAllCountries = ()=> dispatch =>{
-    return fetch("http://localhost:3001/countries").then((response) => response.json())
-    .then((json) =>{
-        dispatch({type:GET_ALL_COUNTRIES, payload: json})
-
-    })
-
-}
 
 export const getPaginationNumber = function (payload){
 
@@ -34,13 +24,6 @@ export const  getCountrySearch = (pais,order)=> dispatch => {
 
     
 }
-
-export const getFirtsCountries = () =>{
-
-return{type:GET_FIRST_COUNTRIES}
-}
-
-
 
 export const setOrderSatus = (order) =>{
 
