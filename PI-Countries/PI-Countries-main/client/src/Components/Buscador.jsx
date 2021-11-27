@@ -1,8 +1,8 @@
 import React  from "react"
-import { Link } from "react-router-dom"
+
 import { useState } from "react"
 import { useDispatch, useSelector} from "react-redux"
-import { getCountrySearch, getFilterCountries, getFirtsCountries, setpaisSatus } from "../redux/actions"
+import { getCountrySearch,  setpaisSatus } from "../redux/actions"
 
 const Buscador = (props) =>{
      const dispatch = useDispatch();

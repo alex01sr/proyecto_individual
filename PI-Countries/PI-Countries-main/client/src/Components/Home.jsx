@@ -1,10 +1,11 @@
 import React  from "react"
 
-import {  getCountrySearch, getFirtsCountries } from "../redux/actions"
+import {  getCountrySearch } from "../redux/actions"
 import {useDispatch, useSelector } from "react-redux";
 import Country from "./Country";
 import Pagination from "./Pagination";
 import Nav from "./Nav";
+import Filter from "./Filter";
 
 const Home = (props) =>{
    //traemos los dos estados globales
@@ -12,11 +13,12 @@ const Home = (props) =>{
     const searchCountry = useSelector((state)=> state.country)
     const pag = useSelector((state) => state.pagination)
     const dispatch = useDispatch()
-    
+  
 
 //creamos un estado local
     const[state, setState] = React.useState({
-        arrayState: []
+        arrayState: [],
+        arrayfilter:[]
         
     })
     const pais = useSelector((state) => state.pais)
@@ -29,36 +31,46 @@ const Home = (props) =>{
         },[])
     React.useEffect(()=>{
    /* cada vez que cambie countries ejecutamos este codigo para hacer la division de los array y la proxima paginacion */
-        paginado(searchCountry)},[searchCountry])
-
-
+  
+        paginado(searchCountry)
+      
+    },[searchCountry])
+ 
+    
 
     function paginado(array){
            
-            let aux = []
+            let arrayfilter =[]
+            for(let element of array){
+                if(arrayfilter.includes(element.continente) === false) arrayfilter.push(element.continente)
+            }
+             let aux = []
             let div = 9; 
             let arrayState =[]
             for(let i = 0; i < array.length;i++){
                 if(aux.length < div ){
                     aux.push(array[i])
                 }
-                if(aux.length == div){
+                if(aux.length === div){
                     arrayState.push(aux)
                     aux = [];
                     div = 10;
                 }
             }
             arrayState.push(aux);
-            setState({...state, arrayState})
+            setState({...state, arrayState, arrayfilter})
     }
 
      
     return <div>
                 <Nav/>
-                <div  style={{display: "flex", justifyContent: "center", flexWrap:"wrap"}}>
-                        {/* renderizamos los paises segun la pagina */}
                 
-                        {state.arrayState[pag?pag:0]?.map((countrie)=>{
+                <div  style={{display: "flex", flexWrap:"wrap"}}>
+                        {/* renderizamos los paises segun la pagina */}
+                        <Filter continents={state.arrayfilter}/> 
+                        
+
+                      {state.arrayState[pag?pag:0]?.map((countrie)=>{
                                 
                         return  <Country key={countrie.id}
                                     nombre={countrie.nombre}

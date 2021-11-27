@@ -21,7 +21,7 @@ let arrPromises = [];
     
     /* function buscadorName (){ */
     if(req.query.name && req.query.order && req.query.table){
-
+        
            
                 try {
                 
@@ -36,6 +36,7 @@ let arrPromises = [];
                         res.send(countrys)
 
                     }else{
+
                         countrys = await Country.findAll({where: {nombre: {[Op.iLike]: `%${req.query.name}%`}}, include:[Activity], order:[[req.query.table, req.query.order]] })
     
     

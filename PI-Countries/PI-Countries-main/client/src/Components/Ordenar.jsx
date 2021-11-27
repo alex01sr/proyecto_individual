@@ -1,5 +1,5 @@
 import React  from "react"
-import { Link } from "react-router-dom"
+
 import { useState } from "react"
 import { useDispatch,useSelector } from "react-redux"
 
@@ -27,12 +27,12 @@ const Ordenar = (props) =>{
     },[state])
      return <div>
             <select  onChange={handleOnChange}>
-            <option value="O"selected>Ordenar por {props.table}</option>
-            {props.name?.map((element =>{
-            return <option  value={element.serv}>{element.order}</option>
+            <option value="O">Ordenar por {props.table}</option>
+            {props.name?.map((element,index) =>{
+            return <option key={index} value={element.serv}>{element.order}</option>
 
             
-            }))}
+            })}
             </select>   
         
     </div>
