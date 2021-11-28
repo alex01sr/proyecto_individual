@@ -7,6 +7,7 @@ export const SET_PAIS_STATUS = "SET_PAIS_STATUS";
 export const GET_FILTER = "GET_FILTER";
 export const DELETE_FILTER = "DELETE_FILTER";
 export const SET_FILTER_COUNTRY = "SET_FILTER_COUNTRY";
+export const GET_COUNTRY_DETAIL = "GET_COUNTRY_DETAIL";
 
 
 
@@ -22,6 +23,17 @@ export const  getCountrySearch = (pais,order)=> dispatch => {
     return fetch(`http://localhost:3001/countries?name=${pais}&order=${order[0]}&table=${order[1]}`).then((response) => response.json())
     .then((json) =>{
         dispatch({type:GET_COUNTRY_SEARCH, payload: json})
+
+    })
+
+    
+}
+export const  getCountryDetail = (id)=> dispatch => {
+
+   
+    return fetch(`http://localhost:3001/countries/${id}`).then((response) => response.json())
+    .then((json) =>{
+        dispatch({type:GET_COUNTRY_DETAIL, payload: json})
 
     })
 

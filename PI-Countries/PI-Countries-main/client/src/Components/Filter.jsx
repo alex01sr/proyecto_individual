@@ -35,7 +35,7 @@ const Filter = (props) =>{
     return <div>{
         console.log(state)}
 
-        <label> Oceania<input type="checkbox" value="Oceania" onChange={handleOFChange}/></label>
+        <label> Oceania<input type="checkbox"  value="Oceania" onChange={handleOFChange}/></label>
         <label> Africa<input type="checkbox" value="Africa" onChange={handleOFChange}/></label>
         <label> Europe<input type="checkbox" value="Europe" onChange={handleOFChange}/></label>
         <label> North America<input type="checkbox" value="North America" onChange={handleOFChange}/></label>

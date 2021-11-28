@@ -67,11 +67,11 @@ const Home = (props) =>{
 
      
     return <div>
-                <Nav/>
+                
                 
                 <div  style={{display: "flex", flexWrap:"wrap"}}>
                         {/* renderizamos los paises segun la pagina */}
-                        <Filter /> 
+                        
                         
 
                       {state.arrayState[pag?pag:0]?.map((countrie)=>{

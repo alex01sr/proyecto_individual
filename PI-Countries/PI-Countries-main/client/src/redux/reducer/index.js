@@ -1,11 +1,12 @@
-import {  DELETE_FILTER, GET_COUNTRY_SEARCH, GET_FILTER, GET_PAGINATION_NUMBER, SET_FILTER_COUNTRY, SET_ORDER_STATUS, SET_PAIS_STATUS } from "../actions";
+import {  DELETE_FILTER, GET_COUNTRY_DETAIL, GET_COUNTRY_SEARCH, GET_FILTER, GET_PAGINATION_NUMBER, SET_FILTER_COUNTRY, SET_ORDER_STATUS, SET_PAIS_STATUS } from "../actions";
 
 const initialState={
     pagination: 0,
     country: [],
-    order :["O",""],
+    order :["",""],
     pais:"",
-    filterArray: []
+    filterArray: [],
+    countryDetail: {}
 }
 
 const rootReducer = (state = initialState, action)=>{
@@ -28,7 +29,10 @@ const rootReducer = (state = initialState, action)=>{
 
 
     case DELETE_FILTER:
-        return{...state, filterArray: state.filterArray.filter((element) => element !== action.payload)}
+        return{...state, filterArray: state.filterArray.filter((element) => element !== action.payload )}
+
+    case GET_COUNTRY_DETAIL:
+        return{...state, countryDetail: action.payload}
 
     default:return state
     }

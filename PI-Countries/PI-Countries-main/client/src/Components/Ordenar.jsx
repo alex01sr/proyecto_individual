@@ -8,7 +8,7 @@ import { getCountrySearch, setOrderSatus } from "../redux/actions"
 const Ordenar = (props) =>{
      const dispatch = useDispatch()
 
-    const[state, setState] = useState(["O","nombre"])
+    const[state, setState] = useState(["",""])
 
     const pais = useSelector(state => state.pais)
   
@@ -19,6 +19,7 @@ const Ordenar = (props) =>{
         
        
     }
+    
     React.useEffect(()=>{
         dispatch(setOrderSatus(state))
         dispatch(getCountrySearch(pais,state))
@@ -27,7 +28,7 @@ const Ordenar = (props) =>{
     },[state])
      return <div>
             <select  onChange={handleOnChange}>
-            <option value="O">Ordenar por {props.table}</option>
+            <option value="">Ordenar por {props.table}</option>
             {props.name?.map((element,index) =>{
             return <option key={index} value={element.serv}>{element.order}</option>
 
