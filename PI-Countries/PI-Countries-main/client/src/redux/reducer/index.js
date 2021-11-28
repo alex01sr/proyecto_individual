@@ -1,4 +1,4 @@
-import {  DELETE_FILTER, GET_COUNTRY_SEARCH, GET_FILTER, GET_PAGINATION_NUMBER, SET_ORDER_STATUS, SET_PAIS_STATUS } from "../actions";
+import {  DELETE_FILTER, GET_COUNTRY_SEARCH, GET_FILTER, GET_PAGINATION_NUMBER, SET_FILTER_COUNTRY, SET_ORDER_STATUS, SET_PAIS_STATUS } from "../actions";
 
 const initialState={
     pagination: 0,
@@ -29,6 +29,7 @@ const rootReducer = (state = initialState, action)=>{
 
     case DELETE_FILTER:
         return{...state, filterArray: state.filterArray.filter((element) => element !== action.payload)}
+
     default:return state
     }
 

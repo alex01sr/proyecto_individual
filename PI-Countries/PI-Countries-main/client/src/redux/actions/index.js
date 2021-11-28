@@ -4,8 +4,9 @@ export const GET_PAGINATION_NUMBER = "GET_PAGINATION_NUMBER";
 export const GET_COUNTRY_SEARCH= "GET_COUNTRY_SEARCH";
 export const SET_ORDER_STATUS = "SET_ORDER_STATUS";
 export const SET_PAIS_STATUS = "SET_PAIS_STATUS";
-export const GET_FILTER = "GET_FILTER"
-export const DELETE_FILTER = "DELETE_FILTER"
+export const GET_FILTER = "GET_FILTER";
+export const DELETE_FILTER = "DELETE_FILTER";
+export const SET_FILTER_COUNTRY = "SET_FILTER_COUNTRY";
 
 
 
@@ -41,4 +42,7 @@ export const getFilter = (filter)=>{
 }
 export const deleteFilter = (filter)=>{
     return {type:DELETE_FILTER, payload:filter}
+}
+export const setFilterCountry = (filter)=>{
+    return {type:GET_COUNTRY_SEARCH, payload:filter}
 }
