@@ -1,21 +1,14 @@
 import React  from "react"
-import { useState } from "react"
-import { useDispatch,useSelector } from "react-redux"
+
+import { useDispatch } from "react-redux"
 import { deleteFilter, getFilter } from "../redux/actions"
 
 
 const Filter = (props) =>{
-    let filterarray = []
-    let aux = ""
+   
      const dispatch = useDispatch();
-     const state = useSelector((state)=> state.filterArray)
+    
   
-
-     React.useEffect(()=>{
-       
-
-
-    }, [filterarray,dispatch])
 
     function handleOFChange(e){
 
@@ -25,15 +18,14 @@ const Filter = (props) =>{
         }else if (!e.target.checked){
             dispatch(deleteFilter(e.target.value))
         }
-        console.log(state);
-        aux = filterarray.join("_"); 
+        
+      
 
         
     }
 
 
-    return <div>{
-        console.log(state)}
+    return <div>
 
         <label> Oceania<input type="checkbox"  value="Oceania" onChange={handleOFChange}/></label>
         <label> Africa<input type="checkbox" value="Africa" onChange={handleOFChange}/></label>

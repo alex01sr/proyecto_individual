@@ -19,8 +19,7 @@ let arrPromises = [];
 
   router.get("/countries",async (req,res)=>{
     
-    /* function buscadorName (){ */
-    if(req.query.name){
+   if(req.query.name){
         
            
                 try {
@@ -32,12 +31,29 @@ let arrPromises = [];
     
     
     
-                        if(countrys.length === 0) return res.json({msg:"No se encontro ningun pais"});
+                        if(countrys.length === 0) return res.send([{
+                            id: "sin id",
+                            nombre: "No se encontro ningun pais",
+                            flag: "https://w7.pngwing.com/pngs/595/505/png-transparent-computer-icons-error-closeup-miscellaneous-text-logo.png",
+                            continente: "",
+                            capital: "",
+                            subregion: "",
+                            area: "",
+                            poblacion: ""}]);
+
                         res.send(countrys)
 
                     }else{
                     countrys = await Country.findAll({where: {nombre: {[Op.iLike]: `%${req.query.name}%`}}, include:[Activity]})
-                        if(countrys.length === 0) return res.json({msg:"No se encontro ningun pais"});
+                        if(countrys.length === 0) return res.send([{
+                            id: "sin id",
+                            nombre: "No se encontro ningun pais",
+                            flag: "https://w7.pngwing.com/pngs/595/505/png-transparent-computer-icons-error-closeup-miscellaneous-text-logo.png",
+                            continente: "",
+                            capital: "",
+                            subregion: "",
+                            area: "",
+                            poblacion: ""}]);
                        res.send(countrys)
 
                     }
@@ -52,19 +68,12 @@ let arrPromises = [];
     else{
 
         let countries
-      /*   if(req.query.order === "O" || !req.query.order)  {
-            countries = await Country.findAll()
-        }else{
-            countries = await Country.findAll({order:[[req.query.table, req.query.order]]}); 
-       }
- */
-
-       if(req.query.order && req.query.table)  {
+        if(req.query.order && req.query.table)  {
         countries = await Country.findAll({order:[[req.query.table, req.query.order]]}); 
        
-    }else{
+        }else{
         countries = await Country.findAll()
-   }
+        }
 
 
        if(countries.length=== 0){
@@ -76,7 +85,7 @@ let arrPromises = [];
             }
             
             // validamos que no hayan datos en la base de datos 
-                if(countries.length === 0){
+            if(countries.length === 0){
                 const users = await JSON.parse(body);
                 
                 arrPromises = users.map(( element )=>{

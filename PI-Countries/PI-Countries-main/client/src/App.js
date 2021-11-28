@@ -16,12 +16,6 @@ function App() {
       <Route  path="/home" element={<Home/>}/>
       <Route path="/home/:id" element={<DetailCountry/>}/>
       
-      
-     
-
-  
-     
-  
      </Routes>
     eso tilin
     </div>

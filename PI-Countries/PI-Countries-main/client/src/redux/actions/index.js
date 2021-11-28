@@ -6,17 +6,18 @@ export const SET_ORDER_STATUS = "SET_ORDER_STATUS";
 export const SET_PAIS_STATUS = "SET_PAIS_STATUS";
 export const GET_FILTER = "GET_FILTER";
 export const DELETE_FILTER = "DELETE_FILTER";
-export const SET_FILTER_COUNTRY = "SET_FILTER_COUNTRY";
 export const GET_COUNTRY_DETAIL = "GET_COUNTRY_DETAIL";
 
 
 
-
+//setear la pagina donde se encuentra el usuario
 export const getPaginationNumber = function (payload){
 
     return{type:GET_PAGINATION_NUMBER, payload:payload};
 }
 
+
+//se trae la informacion con sus respectivas querys
 export const  getCountrySearch = (pais,order)=> dispatch => {
 
    
@@ -28,6 +29,7 @@ export const  getCountrySearch = (pais,order)=> dispatch => {
 
     
 }
+//se hace una llamada con el id
 export const  getCountryDetail = (id)=> dispatch => {
 
    
@@ -40,21 +42,22 @@ export const  getCountryDetail = (id)=> dispatch => {
     
 }
 
+//manda al estado global el orden como se quiere tener la info
 export const setOrderSatus = (order) =>{
 
     return{type:SET_ORDER_STATUS, payload:order}
     }
+//manda al estado global el pais que se este buscando
 export const setpaisSatus = (pais) =>{
 
         return{type:SET_PAIS_STATUS, payload:pais}
     }
-
+//agrega un filtro al estado global
 export const getFilter = (filter)=>{
     return {type:GET_FILTER, payload:filter}
 }
+//elimina un filtro al estado global
 export const deleteFilter = (filter)=>{
     return {type:DELETE_FILTER, payload:filter}
 }
-export const setFilterCountry = (filter)=>{
-    return {type:GET_COUNTRY_SEARCH, payload:filter}
-}
+
