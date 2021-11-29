@@ -1,4 +1,4 @@
-import {  DELETE_FILTER, GET_COUNTRY_DETAIL, GET_COUNTRY_SEARCH, GET_FILTER, GET_PAGINATION_NUMBER,  SET_ORDER_STATUS, SET_PAIS_STATUS } from "../actions";
+import {  DELETE_FILTER, GET_ACTIVITY, GET_COUNTRY_DETAIL, GET_COUNTRY_SEARCH, GET_FILTER, GET_PAGINATION_NUMBER,  SET_ORDER_STATUS, SET_PAIS_STATUS } from "../actions";
 
 const initialState={
     pagination: 0,
@@ -6,7 +6,8 @@ const initialState={
     order :["",""],
     pais:"",
     filterArray: [],
-    countryDetail: {}
+    countryDetail: {},
+    activity:[]
 }
 
 const rootReducer = (state = initialState, action)=>{
@@ -33,6 +34,9 @@ const rootReducer = (state = initialState, action)=>{
 
     case GET_COUNTRY_DETAIL:
         return{...state, countryDetail: action.payload}
+
+    case GET_ACTIVITY:
+        return {...state, activity: action.payload}
 
     default:return state
     }

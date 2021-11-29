@@ -69,20 +69,23 @@ let arrPromises = [];
 
         let countries
         if(req.query.order && req.query.table)  {
-        countries = await Country.findAll({order:[[req.query.table, req.query.order]]}); 
+        countries = await Country.findAll({order:[[req.query.table, req.query.order]], include:[Activity]}); 
        
         }else{
-        countries = await Country.findAll()
+        countries = await Country.findAll({include:[Activity]})
         }
 
 
        if(countries.length=== 0){
         request("https://restcountries.com/v3/all", async(err,response,body)=>{
             let countries
-            if(req.query.order === "O" || !req.query.order)  {countries = await Country.findAll()
-            } else{
-                 countries = await Country.findAll({order:[[req.query.table, req.query.order]]}); 
-            }
+                    if(req.query.order && req.query.table)  {
+                countries = await Country.findAll({order:[[req.query.table, req.query.order]], include:[Activity]}); 
+       
+                }else{
+                 countries = await Country.findAll({include:[Activity]})
+                }       
+
             
             // validamos que no hayan datos en la base de datos 
             if(countries.length === 0){
@@ -141,29 +144,55 @@ router.get("/countries/:idPais",async (req,res)=>{
 
 router.post("/activity", async (req,res)=>{
   
-    const {nombre, dificultad, duracion, temporada,countries} = req.body;
+
+    if(req.body.paisesAgregar && req.body.actividad){
+        try {
+            let aux = req.body.actividad.split("-")
+        let activity = await Activity.findByPk(aux[0]);
+        for(let element of req.body.paisesAgregar){
+            let country = await Country.findByPk(element);
+            await country.addActivity(activity)
+            
+        }
+        res.send("Se agregaron los paises a la actividad seleccionada")
+        } catch (error) {
+            res.send("No se agregaron los paises a la actividad seleccionada")
+        }
+        
+
+
+    }
+    
+    else{
+
+    const {nombre, dificultad, duracion, temporada, arraypaises} = req.body;
     try {
         const [instance, created] = await Activity.findOrCreate({where:{nombre: nombre}, defaults:{ dificultad, duracion, temporada}});
        
-
-
-        for(let element of countries){
-            let country = await Country.findByPk(element);
-            await country.addActivity(instance)
-            
+        if(created === true){
+            for(let element of arraypaises){
+                let country = await Country.findByPk(element);
+                await country.addActivity(instance)
+                
+            }
+            res.json({msg:"actividad creada exitosamente"});
+        }else{
+            res.json({msg:"La actividad ya existia"});
         }
-
-      
-        res.send("actividad creada exitosamente");
+        
     } catch (error) {
         res.send({msg:"no se pudo crear la actividad"})
     }
-   
-
-    
-
-    
+}
 });
+
+router.get("/activity", async(req,res)=>{
+
+   let activity = await Activity.findAll(); 
+   res.send(activity)
+
+
+})
 
 
 

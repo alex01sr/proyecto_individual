@@ -4,6 +4,8 @@ import Landing from './Components/Landing';
 import Home from './Components/Home';
 import DetailCountry from './Components/DetailCountry';
 import Nav from './Components/Nav';
+import CrearActividad from './Components/CrearActividad';
+import AgregarActividad from './Components/AgregarActividad';
 
 function App() {
   return (
@@ -14,6 +16,9 @@ function App() {
       <Route path="/"  element={<Landing/>}/>
       
       <Route  path="/home" element={<Home/>}/>
+      <Route  path="/home/crearactividad" element={<CrearActividad/>}/>
+      <Route  path="/home/crearactividad/agregaractividad" element={<AgregarActividad/>}/>
+
       <Route path="/home/:id" element={<DetailCountry/>}/>
       
      </Routes>

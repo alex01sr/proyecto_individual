@@ -1,12 +1,13 @@
 import React  from "react"
 
-import { useDispatch } from "react-redux"
+import { useDispatch,useSelector } from "react-redux"
 import { deleteFilter, getFilter } from "../redux/actions"
 
 
 const Filter = (props) =>{
    
      const dispatch = useDispatch();
+     const activities = useSelector((state)=> state.activity);
     
   
 
@@ -35,7 +36,10 @@ const Filter = (props) =>{
         <label> South America<input type="checkbox" value="South America" onChange={handleOFChange}/></label>
         <label> Antarctica<input type="checkbox" value="Antarctica" onChange={handleOFChange}/></label>
         
-        
+        {activities?.map((element)=>{
+           return  <label> {element.nombre}<input type="checkbox" value={element.nombre} onChange={handleOFChange}/></label>
+
+        })}
      
      </div>
 }

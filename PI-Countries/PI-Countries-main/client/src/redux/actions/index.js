@@ -7,6 +7,7 @@ export const SET_PAIS_STATUS = "SET_PAIS_STATUS";
 export const GET_FILTER = "GET_FILTER";
 export const DELETE_FILTER = "DELETE_FILTER";
 export const GET_COUNTRY_DETAIL = "GET_COUNTRY_DETAIL";
+export const GET_ACTIVITY = "GET_ACTIVITY";
 
 
 
@@ -59,5 +60,12 @@ export const getFilter = (filter)=>{
 //elimina un filtro al estado global
 export const deleteFilter = (filter)=>{
     return {type:DELETE_FILTER, payload:filter}
+}
+export const getActivity = ()=> dispatch=>{
+    return fetch(`http://localhost:3001/activity/`).then((response) => response.json())
+    .then((json) =>{
+        dispatch({type:GET_ACTIVITY, payload: json})
+
+    })
 }
 

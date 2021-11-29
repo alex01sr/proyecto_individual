@@ -1,6 +1,6 @@
 import React  from "react"
 
-import {  getCountrySearch } from "../redux/actions"
+import {  getActivity, getCountrySearch } from "../redux/actions"
 import {useDispatch, useSelector } from "react-redux";
 import Country from "./Country";
 import Pagination from "./Pagination";
@@ -21,13 +21,38 @@ const Home = (props) =>{
 
     //al crear el componente llamar getallcountries y get firstcountries
     React.useEffect(()=>{
-       dispatch(getCountrySearch(pais,order))},[]);
+       dispatch(getCountrySearch(pais,order))
+       dispatch(getActivity());},[]);
+       
 
     React.useEffect(()=>{
-      
+        let countryfilter
    /* cada vez que cambie countries ejecutamos este codigo para hacer la division de los array y la proxima paginacion */
 
-    let countryfilter =(filterArray.length > 0)?country?.filter((element) => filterArray.includes(element.continente)):country;
+    /* let countryfilter =(filterArray.length > 0)?country?.filter((element) => filterArray.includes(element.continente)):country;
+ */
+
+    if(filterArray.length > 0){
+       countryfilter= country?.filter(element=>{
+            if(filterArray.includes(element.continente)){
+                return true;
+
+            }
+            for(let act of element.activities){
+                if(filterArray.includes(act.nombre)){
+                    return true;
+                }
+            }})
+
+     
+
+
+    }else{
+
+    countryfilter= country;
+    }
+
+
     paginado(countryfilter)
       
     },[country,filterArray])
@@ -61,7 +86,8 @@ const Home = (props) =>{
                                             nombre={countrie.nombre}
                                             flag={countrie.flag}
                                             id={countrie.id}
-                                            continente={countrie.continente}/>})} 
+                                            continente={countrie.continente}
+                                            />})} 
 
                 </div>
      
