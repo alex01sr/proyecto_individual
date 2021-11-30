@@ -107,12 +107,42 @@ const Home = (props) =>{
                 <div style={{display: "flex", justifyContent: "center", flexWrap:"wrap"}}>
 
                     {/* con este map creamos los elementos de pagination y le pasamos un argumento con el numero del array  */}
-                    {<Pagination num={0} name="Inicio"/>}
+                   
+                 {<Pagination num={0} name="Inicio"/>}
                      {state.arrayState?.map((element, index)=>{
-                            if(index >pagination-2 && index <= pagination+2){
-                            return <Pagination key={index}num={index}/>}
-                            return ""
-                            })}
+                            if(pagination === 0){
+                                if(index < 5){
+                                    return <Pagination key={index}num={index}/>
+                                }
+                           
+
+                            }
+                            if(pagination === 1){
+                                if(index >(pagination-3) && index <= (pagination+3)){
+                                    return <Pagination key={index}num={index}/>
+                                }
+                           
+
+                            }
+
+                            else if(pagination === (state.arrayState.length-1)  ){
+                                if (index >(pagination-5)){
+                                return <Pagination key={index}num={index}/>}
+
+                            }
+                            else if(pagination === (state.arrayState.length-2)){
+                                if (index >(pagination-4)){
+                                    return <Pagination key={index}num={index}/>}
+
+                            }
+                            
+                            else{
+
+                                if (index >(pagination-3) && index <= (pagination+2))
+                                {
+                                return <Pagination key={index}num={index}/>}
+                            }
+                            return ""})}
 
                     {<Pagination num={state.arrayState.length-1} name="Final"/>}
                 </div>

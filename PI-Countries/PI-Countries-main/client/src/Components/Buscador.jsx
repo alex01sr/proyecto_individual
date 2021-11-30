@@ -2,7 +2,7 @@ import React  from "react"
 
 import { useState } from "react"
 import { useDispatch, useSelector} from "react-redux"
-import { getCountrySearch,  setpaisSatus } from "../redux/actions"
+import { getCountrySearch,  setpaisSatus,getPaginationNumber } from "../redux/actions"
 
 const Buscador = (props) =>{
      const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const Buscador = (props) =>{
     }else{
         //si no hace la llamada a getcountrysearch y hace la busqueda en la api 
         dispatch(setpaisSatus(state))
+        dispatch(getPaginationNumber(0))
         dispatch(getCountrySearch(state,order))
        }},[state]) 
 

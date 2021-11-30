@@ -3,7 +3,7 @@ import React  from "react"
 import { useState } from "react"
 import { useDispatch,useSelector } from "react-redux"
 
-import { getCountrySearch, setOrderSatus } from "../redux/actions"
+import { getCountrySearch, setOrderSatus,getPaginationNumber } from "../redux/actions"
 
 const Ordenar = (props) =>{
      const dispatch = useDispatch()
@@ -20,8 +20,12 @@ const Ordenar = (props) =>{
       }
     
     React.useEffect(()=>{
+     
         dispatch(setOrderSatus(state))
-        dispatch(getCountrySearch(pais,state))},[state])
+        
+        dispatch(getCountrySearch(pais,state))
+        
+      },[state])
      return <div>
             <select  onChange={handleOnChange}>
             <option value="-">Ordenar por:</option>

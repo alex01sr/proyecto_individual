@@ -1,7 +1,7 @@
 import React  from "react"
 
 import { useDispatch } from "react-redux"
-import { deleteFilter, getFilter } from "../redux/actions"
+import { deleteFilter, getFilter, getPaginationNumber } from "../redux/actions"
 
 
 const Filter = (props) =>{
@@ -14,6 +14,7 @@ const Filter = (props) =>{
     function handleOFChange(e){
 
         if(e.target.checked){
+            dispatch(getPaginationNumber(0))
             dispatch(getFilter(e.target.value))
             
         }else if (!e.target.checked){

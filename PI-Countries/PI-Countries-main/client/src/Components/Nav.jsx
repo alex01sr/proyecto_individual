@@ -11,7 +11,7 @@ const Nav = (props) =>{
 
    
     return <div style={{display: "flex", justifyContent: "space-around" , alignContent:"center"}}>
-            <div>Countries</div>
+            <div><Link to="/">Countries</Link></div>
             <div><Link to="/home/crearactividad">Crear actividad</Link></div>
             <div><Filter/></div>
             <div><FilterActivities/></div>
