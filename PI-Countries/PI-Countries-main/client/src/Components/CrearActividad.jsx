@@ -1,22 +1,23 @@
 import React  from "react"
 import { useState } from "react"
 import { useSelector,useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import ActivityView from "./ActivityView"
-import Buscador from "./Buscador"
-import Ordenar from "./Ordenar"
+
 import axios from 'axios';
-import { getCountrySearch, setpaisSatus } from "../redux/actions"
+import { getCountrySearch} from "../redux/actions"
 
 const CrearActividad = (props) =>{
 
+    let navigate = useNavigate();
     const [state, setState] = useState({
         nombre:"",
         dificultad:"",
         duracion:"",
         temporada:"",
         arraypaises:[],
-        arrayNombres:[]
+        arrayNombres:[],
+        msg:""
     })
     const dispatch = useDispatch();
     const countries = useSelector((state)=> state.country)
@@ -31,7 +32,7 @@ function handleChange(e){
 }
 function handleArrayCountries(e){
     let arr = e.target.value.split("-")
-    if(!state.arraypaises.includes(arr[0]) && arr[0] != ""){
+    if(!state.arraypaises.includes(arr[0]) && arr[0] !== ""){
         
         setState({...state, arraypaises: state.arraypaises.concat(arr[0]), arrayNombres: state.arrayNombres.concat([arr])})
        
@@ -41,12 +42,21 @@ function handleArrayCountries(e){
 function deleleChange(e){
 
     setState({...state, arraypaises: state.arraypaises.filter((element)=>  element !== e),  arrayNombres: state.arrayNombres.filter((element)=>  element[0] !== e)})
-console.log("ah perro"+e)
+
 }
 
  function  handleSubmit  (event) {
     event.preventDefault();
-    axios.post("http://localhost:3001/activity", state).then(res =>{console.log(res.data)})
+    if(state.nombre && state.dificultad&& state.duracion && state.temporada && state.arraypaises.length > 0){
+        axios.post("http://localhost:3001/activity", state).then(res =>{
+         alert(res.data);
+         if(res.data === "Actividad creada exitosamente") navigate(`/home`)
+  })
+
+    }else{
+        alert("Por favor llene todos los campos ");
+    }
+    
     
 }
     return <div>
@@ -60,9 +70,11 @@ console.log("ah perro"+e)
        <div><input name="nombre"placeholder="Nombre de la actividad" onChange={handleChange}/></div> 
         <div><select name="dificultad" onChange={handleChange}>
             <option>Dificultad</option>
-            <option>Facil</option>
-            <option>Intermedio</option>
-            <option>Dificil</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
         </select></div>
         <div><input name="duracion" placeholder="duracion " onChange={handleChange}/> horas</div>
         <div><input name="temporada" placeholder="Temporada.. " onChange={handleChange}/> </div>
@@ -81,14 +93,14 @@ console.log("ah perro"+e)
 
         </form>
         <h4>Paises que se escogieron</h4>
-        {state.arrayNombres?.map((element)=>{
-                    return <ActivityView id={element[0]}nombre={element[1]} func={deleleChange}/>
+        {state.arrayNombres?.map((element, index)=>{
+                    return <ActivityView key={index} id={element[0]}nombre={element[1]} func={deleleChange}/>
 
 
                 })}
     
 
-        
+        <div>{state.msg}</div>
     </div>
 }
 

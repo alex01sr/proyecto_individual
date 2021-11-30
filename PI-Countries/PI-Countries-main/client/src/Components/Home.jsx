@@ -10,7 +10,7 @@ const Home = (props) =>{
    //traemos los dos estados globales
     
 
-   const {country,order,pais,filterArray,pagination } = useSelector((state)=> state)
+   const {country,order,pais,filterArray,pagination,filterArrayActivity } = useSelector((state)=> state)
    const dispatch = useDispatch() 
   
 //creamos un estado local
@@ -27,25 +27,38 @@ const Home = (props) =>{
 
     React.useEffect(()=>{
         let countryfilter
+        
    /* cada vez que cambie countries ejecutamos este codigo para hacer la division de los array y la proxima paginacion */
 
     /* let countryfilter =(filterArray.length > 0)?country?.filter((element) => filterArray.includes(element.continente)):country;
  */
 
-    if(filterArray.length > 0){
-       countryfilter= country?.filter(element=>{
-            if(filterArray.includes(element.continente)){
-                return true;
+    if(filterArray.length > 0 && filterArrayActivity.length >0){
+       countryfilter= country?.filter(element=>( filterArray.includes(element.continente) ));
+               
 
-            }
-            for(let act of element.activities){
-                if(filterArray.includes(act.nombre)){
-                    return true;
+
+
+        countryfilter = countryfilter?.filter(element=>{
+                for(let act of element.activities){
+                    if(filterArrayActivity.includes(act.nombre)){
+                        return true;
+                    }
                 }
-            }})
+                return false;   
+            });
 
-     
+        
+    }else if(filterArray.length > 0){
+        countryfilter= country?.filter(element=>( filterArray.includes(element.continente) ));
 
+    }else if(filterArrayActivity.length >0){
+        countryfilter = country?.filter(element=>{
+            for(let act of element.activities){
+                if(filterArrayActivity.includes(act.nombre)){
+                    return true;}}
+            return false;  
+            })
 
     }else{
 
@@ -55,7 +68,7 @@ const Home = (props) =>{
 
     paginado(countryfilter)
       
-    },[country,filterArray])
+    },[country,filterArray,filterArrayActivity])
 
  function paginado(array){
            

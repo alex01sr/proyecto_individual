@@ -1,5 +1,5 @@
 import React  from "react"
-import { Link } from "react-router-dom"
+
 
 const Activity = (props) =>{
 const {nombre,duracion,temporada,dificultad} = props.arg

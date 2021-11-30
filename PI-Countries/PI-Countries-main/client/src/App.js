@@ -22,7 +22,7 @@ function App() {
       <Route path="/home/:id" element={<DetailCountry/>}/>
       
      </Routes>
-    eso tilin
+  
     </div>
   );
 }

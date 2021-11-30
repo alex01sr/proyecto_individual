@@ -8,6 +8,8 @@ export const GET_FILTER = "GET_FILTER";
 export const DELETE_FILTER = "DELETE_FILTER";
 export const GET_COUNTRY_DETAIL = "GET_COUNTRY_DETAIL";
 export const GET_ACTIVITY = "GET_ACTIVITY";
+export const GET_FILTER_ACTIVITY = "GET_FILTER_ACTIVITY"
+export const DELETE_FILTER_ACTIVITY ="DELETE_FILTER_ACTIVITY"
 
 
 
@@ -57,6 +59,14 @@ export const setpaisSatus = (pais) =>{
 export const getFilter = (filter)=>{
     return {type:GET_FILTER, payload:filter}
 }
+
+export const getFilterActivity = (filter)=>{
+    return {type:GET_FILTER_ACTIVITY, payload:filter}
+}
+export const deleteFilterActivity = (filter)=>{
+    return {type:DELETE_FILTER_ACTIVITY, payload:filter}
+}
+
 //elimina un filtro al estado global
 export const deleteFilter = (filter)=>{
     return {type:DELETE_FILTER, payload:filter}
@@ -68,4 +78,5 @@ export const getActivity = ()=> dispatch=>{
 
     })
 }
+
 

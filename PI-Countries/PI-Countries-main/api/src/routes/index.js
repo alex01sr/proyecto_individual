@@ -156,7 +156,7 @@ router.post("/activity", async (req,res)=>{
         }
         res.send("Se agregaron los paises a la actividad seleccionada")
         } catch (error) {
-            res.send("No se agregaron los paises a la actividad seleccionada")
+        res.send("No se agregaron los paises a la actividad seleccionada")
         }
         
 
@@ -175,13 +175,13 @@ router.post("/activity", async (req,res)=>{
                 await country.addActivity(instance)
                 
             }
-            res.json({msg:"actividad creada exitosamente"});
+            res.send("Actividad creada exitosamente");
         }else{
-            res.json({msg:"La actividad ya existia"});
+            res.send("La actividad ya existia, si desea agregar la actividad a un nuevo pais por favor presione 'Agregar pais a actividad existente'");
         }
         
     } catch (error) {
-        res.send({msg:"no se pudo crear la actividad"})
+        res.send({msg:"no se pudo crear la actividad, intentelo mas tarde"})
     }
 }
 });
