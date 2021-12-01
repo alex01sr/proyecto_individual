@@ -1,11 +1,11 @@
 import React  from "react"
 
-import {  getActivity, getCountrySearch } from "../redux/actions"
+import {  getActivity, getCountryDetail, getCountrySearch, setOrderSatus } from "../redux/actions"
 import {useDispatch, useSelector } from "react-redux";
 import Country from "./Country";
 
 import RenderPaginado from "./RenderPaginado"
-
+import styles from "../css/Country.module.css"
 
 const Home = (props) =>{
    //traemos los dos estados globales
@@ -22,7 +22,8 @@ const Home = (props) =>{
 
     //al crear el componente llamar getallcountries y get firstcountries
     React.useEffect(()=>{
-     
+       
+    dispatch((getCountryDetail()))
        dispatch(getCountrySearch(pais,order))
        dispatch(getActivity());},[]);
        
@@ -99,8 +100,8 @@ const Home = (props) =>{
     }
 
      
-    return <div>
-                 <div  style={{display: "flex", flexWrap:"wrap"}}>
+    return <div  className={styles.back}>
+                 <div  style={{display: "flex", flexWrap:"wrap", justifyContent:"center"}}>
                         {/* renderizamos los paises segun la pagina */}
                     {state.arrayState[pagination?pagination:0]?.map((countrie)=>{
                             return  <Country key={countrie.id}
@@ -109,14 +110,14 @@ const Home = (props) =>{
                                             id={countrie.id}
                                             continente={countrie.continente}
                                             />})} 
-
-                </div>
+                    
+                
      
-                
-
+              
+</div>
                     {/* con este map creamos los elementos de pagination y le pasamos un argumento con el numero del array  */}
-                <div><RenderPaginado array={state.arrayState}/></div>    
-                
+                 
+                    <RenderPaginado  array={state.arrayState}/>
                 
                 
             </div>

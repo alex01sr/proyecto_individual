@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  background-image: url("../src/rec/imagentierra.jpg");
+
+  opacity: 90%;
+  background-attachment: fixed;
+  transition-duration: 0.5s;
 }
 
 .App-logo {
@@ -12,7 +17,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+.body {
+  background-color: #000000;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

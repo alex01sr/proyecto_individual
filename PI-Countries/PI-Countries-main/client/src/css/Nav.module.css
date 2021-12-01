@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+.nav {
+  justify-content: space-around;
+  background-color: #000000;
+  color: #edeede;
+  font-family: "Roboto Condensed", sans-serif;
+  width: 100%;
+  align-items: center;
+
+  height: 4em;
+  z-index: 100;
+  transition-duration: 0.4s;
+  padding-top: 0.2em;
+  padding-bottom: 0.5em;
+}
+.nav:hover {
+  height: 6em;
+}
+.crear {
+  color: #ffffff;
+  font-family: "Roboto Condensed", sans-serif;
+  text-decoration: None;
+}
+.ordenar {
+  background-color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 5px 1px;
+  text-align: center;
+  font-size: 15px;
+  transition-duration: 0.4s;
+}
+.buscador {
+  background-color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 5px 1px;
+  text-align: center;
+  font-size: 15px;
+  transition-duration: 0.4s;
+}
+
+.icono {
+  font-size: 40px;
+
+  color: #ffffff;
+  font-family: "Roboto Condensed", sans-serif;
+
+  transition-duration: 0.4s;
+  text-decoration: none;
+}
+.ocultar {
+  display: none;
+}
+.ordenaractividad {
+  background-color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 5px 1px;
+  text-align: center;
+  font-size: 15px;
+  transition-duration: 0.4s;
+  font-size: 30px;
+}

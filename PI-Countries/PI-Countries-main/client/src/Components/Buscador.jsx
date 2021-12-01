@@ -3,7 +3,7 @@ import React  from "react"
 import { useState } from "react"
 import { useDispatch, useSelector} from "react-redux"
 import { getCountrySearch,  setpaisSatus,getPaginationNumber } from "../redux/actions"
-
+import styles from "../css/Nav.module.css"
 const Buscador = (props) =>{
      const dispatch = useDispatch();
      const order = useSelector(state => state.order);
@@ -35,7 +35,7 @@ function handleChange(e){
 
     return <div >
                
-                <input  name="Buscar" placeholder="Buscar pais.." onChange={handleChange} />
+                <input className={styles.buscador} name="Buscar" placeholder="Buscar pais.." onChange={handleChange} />
                     
             </div>
 }

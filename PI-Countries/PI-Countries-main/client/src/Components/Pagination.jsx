@@ -2,15 +2,13 @@ import React  from "react"
 
 import { getPaginationNumber } from "../redux/actions"
 import {useDispatch} from "react-redux";
-
+import styles from "../css/Pagination.module.css"
 const Pagination = (props) =>{
      const dispatch = useDispatch()
-    return <div>
-      
-        <button onClick={()=>dispatch(getPaginationNumber(props.num)) }>{props.name?props.name:props.num}</button>
+    return <button className={styles.pagination} onClick={()=>dispatch(getPaginationNumber(props.num)) }>{props.name?props.name:props.num}</button>
         
         
-    </div>
+  
 }
 
 export default Pagination

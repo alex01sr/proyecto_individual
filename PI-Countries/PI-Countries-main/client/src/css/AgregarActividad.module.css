@@ -1,0 +1,36 @@
+.container {
+  background-color: black;
+  height: 1000px;
+  opacity: 60%;
+  transition-duration: 0.4s;
+}
+.container:hover {
+  opacity: 95%;
+}
+.input {
+  background-color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 5px 1px;
+  text-align: center;
+  font-size: 15px;
+  transition-duration: 0.4s;
+  font-size: 30px;
+  margin-top: 10px;
+}
+.boton {
+  background-color: #2b61c7;
+  margin-top: 10px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  transition-duration: 0.4s;
+}
+.boton:hover {
+  cursor: pointer;
+  background-color: #0e3379;
+}

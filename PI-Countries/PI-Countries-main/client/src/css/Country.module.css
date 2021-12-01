@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+.container {
+  display: "block";
+  background-color: black;
+
+  margin-top: 2em;
+  margin-left: 1em;
+  border-radius: 10px;
+  font-family: "Roboto Condensed", sans-serif;
+  transition-duration: 0.4s;
+
+  width: 350px;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.container:hover {
+  opacity: 100%;
+  border: 2px solid #ffffff;
+}
+.container:hover {
+  opacity: 100%;
+}
+.fondo {
+  background-color: black;
+
+  border-radius: 5px;
+}
+.img {
+  width: 350px;
+  height: 200px;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+.img:hover {
+  height: 210px;
+}
+.nombre {
+  font-size: 50px;
+  color: #ffffff;
+}
+.continente {
+  margin-top: -40px;
+  font-size: 30px;
+  color: #ffffff;
+}
+.boton {
+  background-color: #2b61c7;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  transition-duration: 0.4s;
+}
+.boton:hover {
+  cursor: pointer;
+  background-color: #0e3379;
+}
+.back {
+  background-color: black;
+  opacity: 80%;
+  transition-duration: 1.5s;
+}
+.back:hover {
+  opacity: 95%;
+}

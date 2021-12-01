@@ -1,19 +1,20 @@
 import React  from "react"
 import { Link } from "react-router-dom";
-
+import styles from "../css/Country.module.css"
 
 const Country = ({id, nombre, flag,continente}) =>{
 
-    return (<div>
+    return <div className={styles.container}>
+        
         <Link to={`/home/${id}`}> 
-        <img src={flag} alt="bandera"/></Link>
-        <h2>{nombre}</h2>
-        <h3>{continente}</h3>
-        <Link to={`/home/${id}`}>  <button>Detalles</button></Link>
-
+        <img className={styles.img} src={flag} alt="bandera"/></Link>
+        <h1 className={styles.nombre}>{nombre}</h1>
+        <h3 className={styles.continente}>{continente}</h3>
+        <Link to={`/home/${id}`}>  <button className={styles.boton}>Detalles</button></Link>
+        </div>
 
         
-    </div>)
+   
 };
 
 export default Country

@@ -2,7 +2,7 @@ import React  from "react"
 
 import { useDispatch } from "react-redux"
 import { deleteFilter, getFilter, getPaginationNumber } from "../redux/actions"
-
+import styles from "../css/Nav.module.css"
 
 const Filter = (props) =>{
    
@@ -27,8 +27,8 @@ const Filter = (props) =>{
     }
 
 
-    return <div>
-        Filtar por continente:
+    return <div className={styles.filter}>
+        Filtrar por continente:
         <div> <label> Oceania<input type="checkbox"  value="Oceania" onChange={handleOFChange}/></label>
         <label> Africa<input type="checkbox" value="Africa" onChange={handleOFChange}/></label>
         <label> Europe<input type="checkbox" value="Europe" onChange={handleOFChange}/></label>

@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: black;
+  opacity: 60%;
+  transition-duration: 0.5s;
+}
+.container:hover {
+  opacity: 90%;
+}
+.contenido {
+  background-color: black;
+
+  font-family: "Roboto Condensed", sans-serif;
+  color: #ffffff;
+
+  margin-left: 100px;
+
+  align-items: center;
+}
+.contenido:hover {
+  opacity: 100%;
+}
+.contenido2 {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #ffffff;
+  font-size: 40px;
+  width: 300px;
+}
+.flag {
+  margin-top: 30px;
+  width: 350px;
+  height: 200px;
+  border-radius: 8px;
+}
+.nombre {
+  margin-top: 30px;
+}
+.actividad {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  opacity: 40%;
+  transition-duration: 0.5s;
+}
+.actividad:hover {
+  opacity: 90%;
+}
+.act {
+  font-size: 70px;
+  text-align: center;
+}
+.cardActivity {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 30px;
+  margin: 10px;
+  border-radius: 20px;
+  background-color: #000000;
+  color: #ffffff;
+  width: 500px;
+  transition-duration: 0.4s;
+  height: 350px;
+}
+.cardActivity:hover {
+  width: 550px;
+
+  background-color: #0e3379;
+}
+.boton {
+  background-color: #2b61c7;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  transition-duration: 0.4s;
+}
+.boton:hover {
+  cursor: pointer;
+  background-color: #0e3379;
+}

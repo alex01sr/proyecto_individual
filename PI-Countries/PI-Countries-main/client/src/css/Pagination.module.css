@@ -1,0 +1,25 @@
+.pag {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+.pag li button:hover {
+  color: red;
+  background-color: #ffffff;
+}
+.select button {
+  color: #326173;
+  font-size: 25px;
+}
+
+.pagination {
+  background-color: #000000;
+  color: #edeede;
+  padding: 8px 10px;
+  font-size: 20px;
+  transition-duration: 0.4s;
+  border: 2px solid;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}

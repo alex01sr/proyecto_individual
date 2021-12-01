@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+.input {
+  background-color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 5px 1px;
+  text-align: center;
+  font-size: 15px;
+  transition-duration: 0.4s;
+  font-size: 30px;
+  margin-top: 10px;
+}
+.inputduracion {
+  background-color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 5px 1px;
+  text-align: center;
+  font-size: 15px;
+  margin-left: 100px;
+  margin-top: 10px;
+  transition-duration: 0.4s;
+  font-size: 30px;
+}
+.Nav_nav__8nAHJ {
+  position: absolute;
+  top: -9999px;
+}
+.back {
+  background-color: black;
+  opacity: 70%;
+  transition-duration: 0.4s;
+}
+.back:hover {
+  opacity: 95%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 40px;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.boton {
+  background-color: #2b61c7;
+  margin-top: 10px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  transition-duration: 0.4s;
+}
+.boton:hover {
+  cursor: pointer;
+  background-color: #0e3379;
+}
+.agregarPaises {
+  color: #0e3379;
+  margin: 2px;
+}
+.inputPaises {
+  margin-top: -10px;
+  background-color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  text-align: center;
+  font-size: 15px;
+  transition-duration: 0.4s;
+  font-size: 20px;
+}
+.botones {
+  display: flex;
+  justify-content: space-around;
+}
+.paisact {
+  flex-direction: row;
+  background-color: white;
+  color: black;
+  width: auto;
+  padding: 5px 10px;
+  height: 100px;
+  margin: 10px;
+}
+.botonview {
+  background-color: red;
+  margin-top: 20px;
+  margin-left: 10px;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  transition-duration: 0.4s;
+}
+.botonview:hover {
+  cursor: pointer;
+  background-color: #0e3379;
+}
+.paisesEsc {
+  color: #a82020;
+  margin: 2px;
+  font-size: 50px;
+  padding-bottom: 10px;
+}

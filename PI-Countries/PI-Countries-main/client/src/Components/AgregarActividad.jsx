@@ -5,7 +5,7 @@ import { Link,useNavigate } from "react-router-dom"
 import ActivityView from "./ActivityView"
 import axios from 'axios';
 import { getActivity } from "../redux/actions"
-
+import styles from "../css/AgregarActividad.module.css"
 const AgregarActividad = (props) =>{
     const [state, setState] = useState({
         paisesAgregar:[],
@@ -18,10 +18,7 @@ const AgregarActividad = (props) =>{
     const dispatch = useDispatch();
 
     React.useEffect(()=>{
-        dispatch(getActivity())
-        
-
-    },[])
+        dispatch(getActivity())},[])
 
     function handleArrayCountries(e){
         let arr = e.target.value.split("-")
@@ -58,29 +55,33 @@ const AgregarActividad = (props) =>{
         
     }
 
-    return <div>
+    return <div className={styles.container}>
        
        
-        <div><Link to="/home/crearactividad" >Volver</Link></div>
-        <select name="paises" onChange={handleArrayCountries}>
+        <div><Link to="/home/crearactividad" ><button className={styles.boton}>Volver</button></Link></div>
+
+        <select  className={styles.input} name="paises" onChange={handleArrayCountries}>
             <option value={"-"}>Seleccionar paises:</option>
             {countries?.map((element,index) =>{
             return <option key={index} value={`${element.id}-${element.nombre}`}>{element.nombre}</option>})}
-            </select>
-            <select name="actividades" onChange={handleChange}>
+        </select>
+
+        <select className={styles.input} name="actividades" onChange={handleChange}>
             <option value={""}>Seleccionar actividad:</option>
             {activities?.map((element,index) =>{
             return <option key={index} value={`${element.id}-${element.nombre}`}>{element.nombre}</option>})}
-            </select>
+        </select>
       
         <div>
-        <h3>La actividad {state.actividad} se agregara a los </h3>
-        <h3>Paises:</h3>
-                 {state.arrayNombres?.map((element, index)=>{
-                    return <ActivityView  key={index}id={element[0]}nombre={element[1]} func={deleleChange}/>
-                })}
-       
-                <div><form onSubmit={handleSubmit}><button>Agregar</button></form></div>
+            <h3>La actividad {state.actividad} se agregara a los </h3>
+            <h3>Paises:</h3>
+
+               <div style={{display:"flex", justifyContent:"center", flexDirection:"row" , flexWrap:"wrap"}}>
+                    {state.arrayNombres?.map((element, index)=>{
+                    return <ActivityView key={index} id={element[0]}nombre={element[1]} func={deleleChange}/>})}
+        </div>
+
+        <div><form onSubmit={handleSubmit}><button className={styles.boton}>Agregar</button></form></div>
         </div>
     </div>
 }
