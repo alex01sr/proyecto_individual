@@ -1,4 +1,4 @@
-import {  DELETE_FILTER, DELETE_FILTER_ACTIVITY,GET_ACTIVITY, GET_COUNTRY_DETAIL, GET_COUNTRY_SEARCH, GET_FILTER, GET_FILTER_ACTIVITY, GET_PAGINATION_NUMBER,  SET_ORDER_STATUS, SET_PAIS_STATUS } from "../actions";
+import {  DELETE_FILTER, DELETE_FILTER_ACTIVITY,GET_ACTIVITY, GET_COUNTRY_DETAIL, GET_COUNTRY_SEARCH, GET_FILTER, GET_FILTER_ACTIVITY, GET_PAGINATION_NUMBER,  SET_ORDER_STATUS, SET_PAIS_STATUS, UPDATE_FILTER, UPDATE_FILTER_ACTIVITY } from "../actions";
 
 const initialState={
     pagination: 0,
@@ -26,17 +26,23 @@ const rootReducer = (state = initialState, action)=>{
     case SET_PAIS_STATUS:
         return{...state, pais:action.payload}
 
-    case GET_FILTER:
-        return{...state, filterArray: state.filterArray.concat(action.payload)}
+   
 
     case GET_FILTER_ACTIVITY:
         return{...state, filterArrayActivity: state.filterArrayActivity.concat(action.payload)}
 
     case DELETE_FILTER_ACTIVITY:
             return{...state, filterArrayActivity: state.filterArrayActivity.filter((element) => element !== action.payload )}
+    
+    case UPDATE_FILTER_ACTIVITY:
+        return {...state, filterArrayActivity: action.payload}
+    
+    case GET_FILTER:
+            return{...state, filterArray: state.filterArray.concat(action.payload)}
     case DELETE_FILTER:
         return{...state, filterArray: state.filterArray.filter((element) => element !== action.payload )}
-
+    case UPDATE_FILTER:
+        return {...state, filterArray: action.payload}
     case GET_COUNTRY_DETAIL:
         return{...state, countryDetail: action.payload}
 

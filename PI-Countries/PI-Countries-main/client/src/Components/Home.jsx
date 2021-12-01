@@ -3,7 +3,8 @@ import React  from "react"
 import {  getActivity, getCountrySearch } from "../redux/actions"
 import {useDispatch, useSelector } from "react-redux";
 import Country from "./Country";
-import Pagination from "./Pagination";
+
+import RenderPaginado from "./RenderPaginado"
 
 
 const Home = (props) =>{
@@ -21,30 +22,31 @@ const Home = (props) =>{
 
     //al crear el componente llamar getallcountries y get firstcountries
     React.useEffect(()=>{
+     
        dispatch(getCountrySearch(pais,order))
        dispatch(getActivity());},[]);
        
+       
+  
 
     React.useEffect(()=>{
         let countryfilter
         
    /* cada vez que cambie countries ejecutamos este codigo para hacer la division de los array y la proxima paginacion */
 
-    /* let countryfilter =(filterArray.length > 0)?country?.filter((element) => filterArray.includes(element.continente)):country;
- */
-
+ 
     if(filterArray.length > 0 && filterArrayActivity.length >0){
        countryfilter= country?.filter(element=>( filterArray.includes(element.continente) ));
                
-
-
-
         countryfilter = countryfilter?.filter(element=>{
+            if(element.activities){
                 for(let act of element.activities){
                     if(filterArrayActivity.includes(act.nombre)){
                         return true;
                     }
                 }
+            }
+               
                 return false;   
             });
 
@@ -54,9 +56,15 @@ const Home = (props) =>{
 
     }else if(filterArrayActivity.length >0){
         countryfilter = country?.filter(element=>{
-            for(let act of element.activities){
-                if(filterArrayActivity.includes(act.nombre)){
-                    return true;}}
+            if(element.activities){
+                for(let act of element.activities){
+                    if(filterArrayActivity.includes(act.nombre)){
+                        return true;
+                    }
+                }
+            }
+
+
             return false;  
             })
 
@@ -104,48 +112,13 @@ const Home = (props) =>{
 
                 </div>
      
-                <div style={{display: "flex", justifyContent: "center", flexWrap:"wrap"}}>
+                
 
                     {/* con este map creamos los elementos de pagination y le pasamos un argumento con el numero del array  */}
-                   
-                 {<Pagination num={0} name="Inicio"/>}
-                     {state.arrayState?.map((element, index)=>{
-                            if(pagination === 0){
-                                if(index < 5){
-                                    return <Pagination key={index}num={index}/>
-                                }
-                           
-
-                            }
-                            if(pagination === 1){
-                                if(index >(pagination-3) && index <= (pagination+3)){
-                                    return <Pagination key={index}num={index}/>
-                                }
-                           
-
-                            }
-
-                            else if(pagination === (state.arrayState.length-1)  ){
-                                if (index >(pagination-5)){
-                                return <Pagination key={index}num={index}/>}
-
-                            }
-                            else if(pagination === (state.arrayState.length-2)){
-                                if (index >(pagination-4)){
-                                    return <Pagination key={index}num={index}/>}
-
-                            }
-                            
-                            else{
-
-                                if (index >(pagination-3) && index <= (pagination+2))
-                                {
-                                return <Pagination key={index}num={index}/>}
-                            }
-                            return ""})}
-
-                    {<Pagination num={state.arrayState.length-1} name="Final"/>}
-                </div>
+                <div><RenderPaginado array={state.arrayState}/></div>    
+                
+                
+                
             </div>
 }
 

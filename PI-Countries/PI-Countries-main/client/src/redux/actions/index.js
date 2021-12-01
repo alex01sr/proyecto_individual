@@ -10,6 +10,8 @@ export const GET_COUNTRY_DETAIL = "GET_COUNTRY_DETAIL";
 export const GET_ACTIVITY = "GET_ACTIVITY";
 export const GET_FILTER_ACTIVITY = "GET_FILTER_ACTIVITY"
 export const DELETE_FILTER_ACTIVITY ="DELETE_FILTER_ACTIVITY"
+export const UPDATE_FILTER = "UPDATE_FILTER";
+export const UPDATE_FILTER_ACTIVITY = "UPDATE_FILTER_ACTIVITY";
 
 
 
@@ -28,7 +30,7 @@ export const  getCountrySearch = (pais,order)=> dispatch => {
     .then((json) =>{
         dispatch({type:GET_COUNTRY_SEARCH, payload: json})
 
-    })
+    }).catch((error)=> {console.log(error)})
 
     
 }
@@ -40,7 +42,7 @@ export const  getCountryDetail = (id)=> dispatch => {
     .then((json) =>{
         dispatch({type:GET_COUNTRY_DETAIL, payload: json})
 
-    })
+    }).catch((error)=> {console.log(error)})
 
     
 }
@@ -76,7 +78,14 @@ export const getActivity = ()=> dispatch=>{
     .then((json) =>{
         dispatch({type:GET_ACTIVITY, payload: json})
 
-    })
+    }).catch((error)=> {console.log(error)})
 }
+export const updateFilter = ()=>{
+    return {type: UPDATE_FILTER, payload: []}
+}
+export const updateFilterActivity = ()=>{
+    return {type: UPDATE_FILTER_ACTIVITY, payload: []}
+}
+
 
 
