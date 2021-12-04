@@ -1,6 +1,6 @@
 import React  from "react"
 
-import {  getActivity, getCountryDetail, getCountrySearch, setOrderSatus } from "../redux/actions"
+import {  getActivity, getCountryDetail, getCountrySearch } from "../redux/actions"
 import {useDispatch, useSelector } from "react-redux";
 import Country from "./Country";
 
@@ -20,20 +20,21 @@ const Home = (props) =>{
         
     })
 
-    //al crear el componente llamar getallcountries y get firstcountries
+    //al crear el componente limpiar los estados globales y hacer la llamda a la api rest con getcountrysearch
     React.useEffect(()=>{
        
-    dispatch((getCountryDetail()))
+    dispatch((getCountryDetail("c")))
        dispatch(getCountrySearch(pais,order))
-       dispatch(getActivity());},[]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+       dispatch(getActivity(""));},[]);
        
-       
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   
 
     React.useEffect(()=>{
         let countryfilter
         
-   /* cada vez que cambie countries ejecutamos este codigo para hacer la division de los array y la proxima paginacion */
+   /* cada vez que cambie countries ejecutamos este codigo para hacer los respectivos filtrados y el paginado */
 
  
     if(filterArray.length > 0 && filterArrayActivity.length >0){
@@ -76,6 +77,7 @@ const Home = (props) =>{
 
 
     paginado(countryfilter)
+     // eslint-disable-next-line react-hooks/exhaustive-deps
       
     },[country,filterArray,filterArrayActivity])
 
@@ -102,7 +104,7 @@ const Home = (props) =>{
      
     return <div  className={styles.back}>
                  <div  style={{display: "flex", flexWrap:"wrap", justifyContent:"center"}}>
-                        {/* renderizamos los paises segun la pagina */}
+                        {/* renderizamos los paises segun la pagina que se indique en el estado global */}
                     {state.arrayState[pagination?pagination:0]?.map((countrie)=>{
                             return  <Country key={countrie.id}
                                             nombre={countrie.nombre}

@@ -23,7 +23,7 @@ const Nav = (props) =>{
                 {order:"menor a mayor", serv:"ASC", table:"poblacion"},
                 {order:"mayor a menor", serv:"DESC", table:"poblacion"}
                 ]}/>
-        </div>{console.log(location)}
+        </div>
              <div><Buscador/></div>
              </nav>
     </div>

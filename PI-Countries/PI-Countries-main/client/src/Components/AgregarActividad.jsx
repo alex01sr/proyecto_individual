@@ -17,9 +17,13 @@ const AgregarActividad = (props) =>{
     let navigate = useNavigate();
     const dispatch = useDispatch();
 
+    //nos traemos las actividades de la base de datos
     React.useEffect(()=>{
-        dispatch(getActivity())},[])
+        dispatch(getActivity())
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
+    //si se selecciona un pais se agrega al estado local, arrayNombres es un array auxiliar con la informacion que se muestra al usuario
     function handleArrayCountries(e){
         let arr = e.target.value.split("-")
         if(!state.paisesAgregar.includes(arr[0]) && arr[0] !== ""){
@@ -29,20 +33,22 @@ const AgregarActividad = (props) =>{
         }
     
     }
-
+//al seleccionar una actividad se agrega al estado local
     function handleChange(e){
 
         setState({...state, actividad: e.target.value})
     }
+    //esta funciona elimina el pais que se haya agregado 
     function deleleChange(e){
 
         setState({...state, paisesAgregar: state.paisesAgregar.filter((element)=>  element !== e),  arrayNombres: state.arrayNombres.filter((element)=>  element[0] !== e)})
 
     }
 
+    //con handlesubmit enviamos la informacion por body a la base de datos
     function  handleSubmit  (event) {
         event.preventDefault();
-
+//validamos que si este correctamente
         if(state.paisesAgregar.length > 0 & state.actividad !== ""){
             axios.post("http://localhost:3001/activity", state).then(res =>{
             alert(res.data);
@@ -73,8 +79,8 @@ const AgregarActividad = (props) =>{
         </select>
       
         <div>
-            <h3>La actividad {state.actividad} se agregara a los </h3>
-            <h3>Paises:</h3>
+            <h3 className={styles.actMostrar}>La actividad {state.actividad} se agregara a los </h3>
+            <h3 className={styles.actMostrar}>Paises:</h3>
 
                <div style={{display:"flex", justifyContent:"center", flexDirection:"row" , flexWrap:"wrap"}}>
                     {state.arrayNombres?.map((element, index)=>{

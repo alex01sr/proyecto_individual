@@ -2,15 +2,14 @@ import React  from "react"
 
 import { useState } from "react"
 import { useDispatch,useSelector } from "react-redux"
-import { useLocation } from "react-router-dom"
-import { getCountrySearch, setOrderSatus,getPaginationNumber } from "../redux/actions"
+import { getCountrySearch, setOrderSatus } from "../redux/actions"
 import styles from "../css/Nav.module.css"
 const Ordenar = (props) =>{
      const dispatch = useDispatch()
 
 
     const[state, setState] = useState(["",""])
-  const location = useLocation();
+
     const pais = useSelector(state => state.pais)
   
 
@@ -22,10 +21,11 @@ const Ordenar = (props) =>{
     React.useEffect(()=>{
      
         dispatch(setOrderSatus(state))
-        
+         // eslint-disable-next-line react-hooks/exhaustive-deps
         dispatch(getCountrySearch(pais,state))
+         // eslint-disable-next-line react-hooks/exhaustive-deps
         
-      },[state])
+      },[state] ) // eslint-disable-next-line react-hooks/exhaustive-deps
      return <div>
             <select className={styles.ordenar} onChange={handleOnChange}>
             <option value="-">Ordenar por:</option>

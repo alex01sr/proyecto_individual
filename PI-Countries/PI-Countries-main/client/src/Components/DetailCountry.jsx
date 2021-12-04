@@ -13,6 +13,7 @@ const DetailCountry = (props) =>{
     React.useEffect(()=>{
         
         dispatch(getCountryDetail(params.id))
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
   
@@ -40,8 +41,8 @@ const DetailCountry = (props) =>{
                 <div className={styles.actividad} style={{flexDirection:"column"}}>
                     <div><h1 className={styles.act}>ACTIVIDADES TURISTICAS QUE SE REALIZAN:</h1></div>
                     <div style={{display: "flex", flexWrap:"wrap", justifyContent:"center"}}>
-                    {activities?.map((element)=>{
-                        return <Activity arg={element}/>})}
+                    {activities?.map((element,index)=>{
+                        return <Activity key ={index}arg={element}/>})}
                     </div>
                     <Link to="/home"><button className={styles.boton}>VOLVER</button></Link>
                 </div>

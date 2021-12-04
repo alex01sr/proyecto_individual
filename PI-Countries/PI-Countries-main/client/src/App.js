@@ -13,9 +13,12 @@ function App() {
   return (
     <div className="App">
   
-      <Routes><Route path="/home/*" element={<Nav/>}/></Routes>
       <Routes>
       <Route path="/"  element={<Landing/>}/>
+        <Route path="/home/*" element={<Nav/>}/></Routes>
+      <Routes>
+        
+      
       
       <Route  path="/home" element={<Suspense fallback={<h1>Cargando...</h1>} ><Home/></Suspense>}/>
       <Route  path="/home/crearactividad" element={<CrearActividad/>}/>

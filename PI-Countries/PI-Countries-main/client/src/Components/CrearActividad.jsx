@@ -7,10 +7,11 @@ import ActivityView from "./ActivityView"
 import axios from 'axios';
 import { getCountrySearch} from "../redux/actions"
 import styles from "../css/CrearActividad.module.css"
-import Ordenar from "./Ordenar"
+
 const CrearActividad = (props) =>{
     
     let navigate = useNavigate();
+    //creamos estado local con los inputs
     const [state, setState] = useState({
         nombre:"",
         dificultad:"",
@@ -22,8 +23,11 @@ const CrearActividad = (props) =>{
     })
     const dispatch = useDispatch();
     const countries = useSelector((state)=> state.country)
+    //ordenamos los paises para que sea mas comodo para el usuario al momento de agregar una actividad
     React.useEffect(()=>{
-        dispatch(getCountrySearch("",["ASC","nombre"]))},[])
+        dispatch(getCountrySearch("",["ASC","nombre"]))
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
     
 
 
@@ -31,6 +35,7 @@ const CrearActividad = (props) =>{
 function handleChange(e){
     setState({...state, [e.target.name]: e.target.value})
 }
+//vamos agregando los paises que le queramos agregar la actividad al estado local
 function handleArrayCountries(e){
     let arr = e.target.value.split("-")
     if(!state.arraypaises.includes(arr[0]) && arr[0] !== ""){
@@ -48,11 +53,22 @@ function deleleChange(e){
 
  function  handleSubmit  (event) {
     event.preventDefault();
+    //validamos que todos los campos esten llenos para poder enviar
     if(state.nombre && state.dificultad&& state.duracion && state.temporada && state.arraypaises.length > 0){
-        axios.post("http://localhost:3001/activity", state).then(res =>{
-         alert(res.data);
-         if(res.data === "Actividad creada exitosamente") navigate(`/home`)
-  })
+        let aux = parseInt(state.duracion);
+//validamos que el duracion si sea un numero
+        if(Number.isInteger(aux) && aux !== 0){
+            axios.post("http://localhost:3001/activity", state).then(res =>{
+                alert(res.data);
+                if(res.data === "Actividad creada exitosamente") navigate(`/home`)
+               })
+       
+        }
+        else{
+            alert("Por favor escriba un numero  en la duracion, el numero tiene que ser mayor que 0")
+        }
+     
+
 
     }else{
         alert("Por favor llene todos los campos ");
@@ -70,17 +86,28 @@ function deleleChange(e){
         <div className={styles.div}><Link to="/home/crearactividad/agregaractividad"><button className={styles.boton}>Agregar pais a actividad existente</button></Link></div>
        
         <form className={styles.form}onSubmit={handleSubmit}>
-       <div><input className={styles.input} name="nombre"placeholder="Nombre de la actividad" onChange={handleChange}/></div> 
+       <div><input className={styles.input} name="nombre" type="text" placeholder="Nombre de la actividad" title="Sin numeros y sin caracteres especiales" pattern="[A-Za-z ]+" onChange={handleChange}/></div> 
         
-        <div><input  className={styles.inputduracion}name="duracion" placeholder="Duracion " onChange={handleChange}/> Horas</div>
-        <div><input  className={styles.input}name="temporada" placeholder="Temporada.. " onChange={handleChange}/> </div>
+
+        <div><input  className={styles.inputduracion}name="duracion"  placeholder="Duracion.. Ejm: 2 "  title="Solo numeros enteros mayores de 0" onChange={handleChange}/> Horas</div>
+        <div><select className={styles.input} name="temporada" onChange={handleChange}>
+
+            <option value="">Temporada</option>
+            <option value="Verano">Verano</option>
+            <option value="Primavera">Primavera</option>
+            <option value="Otoño">Otoño</option>
+            <option value="Invierno">Invierno</option>
+         
+        </select></div>
+
+
         <div><select className={styles.input} name="dificultad" onChange={handleChange}>
-            <option>Dificultad</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <option value="">Dificultad</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
         </select></div>
        <div> 
            <h4 className={styles.agregarPaises}>Agregar paises que realizan la actividad puedes agregar 1 o más</h4>

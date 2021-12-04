@@ -12,14 +12,14 @@ const RenderPaginado = (props) =>{
                      {props.array?.map((element, index)=>{
                             if(pagination === 0){
                                 if(index < 5){
-                                    return<li className={(index === pagination)? styles.select: ""}><Pagination key={index}num={index}/></li> 
+                                    return<li  key={index}className={(index === pagination)? styles.select: ""}><Pagination key={index}num={index}/></li> 
                                 }
                            
 
                             }
                             if(pagination === 1){
                                 if(index >(pagination-3) && index <= (pagination+3)){
-                                    return<li className={(index === pagination)? styles.select: ""}><Pagination key={index}num={index}/></li> 
+                                    return<li key={index} className={(index === pagination)? styles.select: ""}><Pagination key={index}num={index}/></li> 
                                 }
                            
 
@@ -27,12 +27,12 @@ const RenderPaginado = (props) =>{
 
                             else if(pagination === (props.array.length-1)  ){
                                 if (index >(pagination-5)){
-                                return <li className={(index === pagination)? styles.select: ""}><Pagination key={index}num={index}/></li> }
+                                return <li key={index} className={(index === pagination)? styles.select: ""}><Pagination key={index}num={index}/></li> }
 
                             }
                             else if(pagination === (props.array.length-2)){
                                 if (index >(pagination-4)){
-                                    return <li className={(index === pagination)? styles.select: ""}><Pagination key={index}num={index}/></li> }
+                                    return <li key={index} className={(index === pagination)? styles.select: ""}><Pagination key={index}num={index}/></li> }
 
                             }
                             
@@ -40,7 +40,7 @@ const RenderPaginado = (props) =>{
 
                                 if (index >(pagination-3) && index <= (pagination+2))
                                 {
-                                return <li className={(index === pagination)? styles.select: ""}><Pagination key={index}num={index}/></li> }
+                                return <li key={index} className={(index === pagination)? styles.select: ""}><Pagination key={index}num={index}/></li> }
                             }
                             return ""})}
 

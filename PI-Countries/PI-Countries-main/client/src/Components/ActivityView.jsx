@@ -2,7 +2,7 @@ import React  from "react"
 import styles from "../css/CrearActividad.module.css"
 
 const ActivityView = (props) =>{
-
+    //con ActivityView mostramos una card con los paises que vamos creando
     return <div >
         <div className={styles.paisact}   style={{display:"flex", justifyContent:"center"}}>
         <div><h1>{props.nombre}</h1></div>

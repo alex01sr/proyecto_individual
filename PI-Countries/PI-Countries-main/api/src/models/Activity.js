@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
 
   },
   dificultad: {
-    type: DataTypes.STRING,
+    type: DataTypes.ENUM("1","2","3","4","5"),
 
 },
 duracion: {
@@ -18,7 +18,7 @@ duracion: {
 
 },
 temporada: {
-  type: DataTypes.STRING,
+  type: DataTypes.ENUM("Verano","Primavera", "Otoño", "Invierno"),
 
 },
 

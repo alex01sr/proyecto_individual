@@ -34,3 +34,8 @@
   cursor: pointer;
   background-color: #0e3379;
 }
+.actMostrar {
+  color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 40px;
+}

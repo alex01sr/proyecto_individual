@@ -79,16 +79,16 @@ let arrPromises = [];
        if(countries.length=== 0){
         request("https://restcountries.com/v3/all", async(err,response,body)=>{
             let countries
-                    if(req.query.order && req.query.table)  {
+               /*      if(req.query.order && req.query.table)  {
                 countries = await Country.findAll({order:[[req.query.table, req.query.order]], include:[Activity]}); 
        
                 }else{
                  countries = await Country.findAll({include:[Activity]})
                 }       
-
+ */
             
             // validamos que no hayan datos en la base de datos 
-            if(countries.length === 0){
+            
                 const users = await JSON.parse(body);
                 
                 arrPromises = users.map(( element )=>{
@@ -112,7 +112,7 @@ let arrPromises = [];
                 } catch (error) {
                     res.send("No se pudo guardar en la base de datos")
                 }
-            }
+            
            
              res.send(countries)
             
@@ -167,6 +167,7 @@ router.post("/activity", async (req,res)=>{
 
     const {nombre, dificultad, duracion, temporada, arraypaises} = req.body;
     try {
+
         const [instance, created] = await Activity.findOrCreate({where:{nombre: nombre}, defaults:{ dificultad, duracion, temporada}});
        
         if(created === true){

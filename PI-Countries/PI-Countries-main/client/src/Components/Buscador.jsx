@@ -11,16 +11,18 @@ const Buscador = (props) =>{
     const[state, setState] =  useState("")
 //useEffect esta escuchando el estado cada vez que cambie
  React.useEffect(()=>{
-     //si el estado esta vacio llamamos la action getfirstcountries que nos devuelve los paises iniciales
+     //si el estado esta vacio llamamos la action getcountrysearch que nos devuelve los paises 
     if(state === "" ) 
         {
             dispatch(setpaisSatus(""))
             dispatch(getCountrySearch(state,order))
+             // eslint-disable-next-line react-hooks/exhaustive-deps
     }else{
         //si no hace la llamada a getcountrysearch y hace la busqueda en la api 
         dispatch(setpaisSatus(state))
         dispatch(getPaginationNumber(0))
         dispatch(getCountrySearch(state,order))
+         // eslint-disable-next-line react-hooks/exhaustive-deps
        }},[state]) 
 
 
