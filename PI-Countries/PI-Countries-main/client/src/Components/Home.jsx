@@ -77,8 +77,8 @@ const Home = (props) =>{
 
 
     paginado(countryfilter)
-     // eslint-disable-next-line react-hooks/exhaustive-deps
-      
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[country,filterArray,filterArrayActivity])
 
  function paginado(array){

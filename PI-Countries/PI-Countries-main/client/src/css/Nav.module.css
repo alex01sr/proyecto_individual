@@ -8,7 +8,7 @@
   width: 100%;
   align-items: center;
 
-  height: 4em;
+  height: 5em;
   z-index: 100;
   transition-duration: 0.4s;
   padding-top: 0.2em;
@@ -59,4 +59,7 @@
   font-size: 15px;
   transition-duration: 0.4s;
   font-size: 30px;
+}
+.filter {
+  margin-top: 10px;
 }

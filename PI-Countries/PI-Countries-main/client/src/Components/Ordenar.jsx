@@ -21,11 +21,12 @@ const Ordenar = (props) =>{
     React.useEffect(()=>{
      
         dispatch(setOrderSatus(state))
-         // eslint-disable-next-line react-hooks/exhaustive-deps
-        dispatch(getCountrySearch(pais,state))
-         // eslint-disable-next-line react-hooks/exhaustive-deps
         
-      },[state] ) // eslint-disable-next-line react-hooks/exhaustive-deps
+        dispatch(getCountrySearch(pais,state))
+        
+        
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[state] ) 
      return <div>
             <select className={styles.ordenar} onChange={handleOnChange}>
             <option value="-">Ordenar por:</option>

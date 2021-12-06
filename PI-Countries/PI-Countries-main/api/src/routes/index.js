@@ -166,6 +166,7 @@ router.post("/activity", async (req,res)=>{
     else{
 
     const {nombre, dificultad, duracion, temporada, arraypaises} = req.body;
+    console.log(req.body)
     try {
 
         const [instance, created] = await Activity.findOrCreate({where:{nombre: nombre}, defaults:{ dificultad, duracion, temporada}});

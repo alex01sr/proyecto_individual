@@ -19,7 +19,7 @@ const CrearActividad = (props) =>{
         temporada:"",
         arraypaises:[],
         arrayNombres:[],
-        msg:""
+       
     })
     const dispatch = useDispatch();
     const countries = useSelector((state)=> state.country)
@@ -33,7 +33,7 @@ const CrearActividad = (props) =>{
 
  
 function handleChange(e){
-    setState({...state, [e.target.name]: e.target.value})
+    setState({...state, [e.target.name]: (e.target.name === "duracion")?parseInt(e.target.value):e.target.value})
 }
 //vamos agregando los paises que le queramos agregar la actividad al estado local
 function handleArrayCountries(e){
@@ -54,10 +54,11 @@ function deleleChange(e){
  function  handleSubmit  (event) {
     event.preventDefault();
     //validamos que todos los campos esten llenos para poder enviar
-    if(state.nombre && state.dificultad&& state.duracion && state.temporada && state.arraypaises.length > 0){
-        let aux = parseInt(state.duracion);
+    if(state.nombre && state.dificultad && state.temporada && state.arraypaises.length > 0){
+        
 //validamos que el duracion si sea un numero
-        if(Number.isInteger(aux) && aux !== 0){
+        if(Number.isInteger(state.duracion) && state.duracion !== 0){
+            
             axios.post("http://localhost:3001/activity", state).then(res =>{
                 alert(res.data);
                 if(res.data === "Actividad creada exitosamente") navigate(`/home`)
@@ -86,10 +87,10 @@ function deleleChange(e){
         <div className={styles.div}><Link to="/home/crearactividad/agregaractividad"><button className={styles.boton}>Agregar pais a actividad existente</button></Link></div>
        
         <form className={styles.form}onSubmit={handleSubmit}>
-       <div><input className={styles.input} name="nombre" type="text" placeholder="Nombre de la actividad" title="Sin numeros y sin caracteres especiales" pattern="[A-Za-z ]+" onChange={handleChange}/></div> 
+       <div><input className={styles.input} name="nombre" type="text" placeholder="Nombre de la actividad" title="Sin numeros y sin caracteres especiales" pattern="[A-Za-z ]" onChange={handleChange}/></div> 
         
 
-        <div><input  className={styles.inputduracion}name="duracion"  placeholder="Duracion.. Ejm: 2 "  title="Solo numeros enteros mayores de 0" onChange={handleChange}/> Horas</div>
+        <div><input  className={styles.inputduracion}name="duracion" type="number" placeholder="Duracion.. Ejm: 2 "  title="Solo numeros enteros mayores de 0" pattern="[0-1000]" onChange={handleChange}/> Horas</div>
         <div><select className={styles.input} name="temporada" onChange={handleChange}>
 
             <option value="">Temporada</option>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../css/Country.module.css"
 
 const Country = ({id, nombre, flag,continente}) =>{
-
+//es la card que se mostrara en el listado de paises
     return <div className={styles.container}>
         
         <Link to={`/home/${id}`}> 

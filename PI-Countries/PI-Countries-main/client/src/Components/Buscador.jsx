@@ -37,7 +37,7 @@ function handleChange(e){
 
     return <div >
                
-                <input className={styles.buscador} name="Buscar" placeholder="Buscar pais.." onChange={handleChange} />
+                <input className={styles.buscador} name="Buscar" placeholder="Buscar pais.." title="Sin numeros y sin caracteres especiales" pattern="[A-Za-z ]"  onChange={handleChange} />
                     
             </div>
 }
