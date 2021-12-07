@@ -87,10 +87,10 @@ function deleleChange(e){
         <div className={styles.div}><Link to="/home/crearactividad/agregaractividad"><button className={styles.boton}>Agregar pais a actividad existente</button></Link></div>
        
         <form className={styles.form}onSubmit={handleSubmit}>
-       <div><input className={styles.input} name="nombre" type="text" placeholder="Nombre de la actividad"  onChange={handleChange}/></div> 
+       <div><input className={styles.input} name="nombre"  placeholder="Nombre de la actividad" title="Sin numeros y caracteres especiales" pattern="[A-Za-z ]+" onChange={handleChange}/></div> 
         
 
-        <div><input  className={styles.inputduracion}name="duracion" type="number" placeholder="Duracion.. Ejm: 2 "  title="Solo numeros enteros mayores de 0" pattern="[0-1000]" onChange={handleChange}/> Horas</div>
+        <div><input  className={styles.inputduracion}name="duracion" type="number" placeholder="Duracion.. Ejm: 2 "  title="Solo numeros enteros mayores de 0"  onChange={handleChange}/> Horas</div>
         <div><select className={styles.input} name="temporada" onChange={handleChange}>
 
             <option value="">Temporada</option>
