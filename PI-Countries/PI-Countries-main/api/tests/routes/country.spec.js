@@ -5,7 +5,7 @@ const app = require('../../src/app.js');
 const { Country, conn } = require('../../src/db.js');
 
 const agent = session(app);
-const country = {
+ const country = {
   id: "ARG",
   nombre: "Argentina",
   flag: "https://flagcdn.com/w320/ar.png",
@@ -15,7 +15,7 @@ const country = {
   area: 2780400,
   poblacion: 45376763,
 };
-
+ 
 describe('Country routes', () => {
   before(() => conn.authenticate()
   .catch((err) => {

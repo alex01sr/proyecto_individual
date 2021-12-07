@@ -76,7 +76,7 @@ let arrPromises = [];
         }
 
 
-       if(countries.length=== 0){
+       if(countries.length === 0){
         request("https://restcountries.com/v3/all", async(err,response,body)=>{
             let countries
                /*      if(req.query.order && req.query.table)  {
